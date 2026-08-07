@@ -45,12 +45,6 @@
 
   wireLink('share-whatsapp', 'https://wa.me/?text=' + encodeURIComponent(shareMessage));
   wireLink('share-sms', 'sms:?&body=' + encodeURIComponent(shareMessage));
-  wireLink('share-site-whatsapp', 'https://wa.me/?text=' + encodeURIComponent(shareMessage));
-  wireLink(
-    'share-site-facebook',
-    'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(siteUrl)
-  );
 
   wireCopy('share-copy', 'share-feedback', shareMessage);
-  wireCopy('share-site-copy', 'share-site-feedback', siteUrl);
 })();

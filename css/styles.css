@@ -302,49 +302,6 @@ body.countdown-sticky-active {
   background: var(--grey);
 }
 
-.section--share-site {
-  background: var(--white);
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 4px solid var(--red);
-}
-
-.share-preview {
-  aspect-ratio: 1200 / 630;
-  border: 4px solid var(--black);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  margin-bottom: 1.25rem;
-  overflow: hidden;
-  background: var(--red);
-}
-
-.share-preview img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.share-site-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-
-.share-site-actions .share-btn--save {
-  grid-column: 1 / -1;
-}
-
-.share-btn--facebook {
-  background: #1877F2;
-  color: var(--white);
-  border-color: #145db2;
-}
-
-.share-btn--facebook:hover {
-  background: #166fe5;
-}
-
 .section--facts {
   background: var(--white);
 }
