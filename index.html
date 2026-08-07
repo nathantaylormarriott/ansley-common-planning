@@ -88,12 +88,16 @@
         <p class="section__lead">Add your name to show you object to sites H9 and H10. We'll also help you make your voice heard to the council.</p>
 
         <div class="petition-count" id="petition-count">
-          <span class="petition-count__number" id="petition-count-value">—</span>
+          <span class="petition-count__number" id="petition-count-value">0</span>
           <span class="petition-count__label">people have signed so far</span>
         </div>
 
-        <div id="petition-form-wrap">
-          <form id="petition-form" name="petition" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="petition-form">
+        <div class="petition-card">
+          <p class="petition-card__eyebrow">Act now</p>
+          <h3 class="petition-card__title">Sign the petition</h3>
+
+          <div id="petition-form-wrap">
+            <form id="petition-form" name="petition" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="petition-form">
           <input type="hidden" name="form-name" value="petition">
 
           <p class="honeypot" aria-hidden="true">
@@ -122,9 +126,9 @@
 
           <button type="submit" class="btn btn--submit">Submit petition</button>
           </form>
-        </div>
+          </div>
 
-        <div class="petition-success" id="petition-success" hidden>
+          <div class="petition-success" id="petition-success" hidden>
           <div class="petition-success__icon" aria-hidden="true">✓</div>
           <h3 class="petition-success__title">Thank you</h3>
           <p class="petition-success__lead">Your petition has been submitted. Your voice matters.</p>
@@ -137,6 +141,7 @@
               Email the council
             </a>
           </div>
+        </div>
         </div>
       </div>
     </section>

@@ -16,6 +16,23 @@
     setCount(Number.isFinite(current) ? current + 1 : 1);
   }
 
+  function registerSignature() {
+    return fetch('/api/petition-count', { method: 'POST' })
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        if (data && typeof data.count === 'number') {
+          setCount(data.count);
+        } else {
+          bumpCount();
+        }
+      })
+      .catch(function () {
+        bumpCount();
+      });
+  }
+
   function loadCount() {
     fetch('/api/petition-count')
       .then(function (res) {
@@ -27,7 +44,7 @@
         }
       })
       .catch(function () {
-        /* keep placeholder */
+        /* keep current value */
       });
   }
 
@@ -47,11 +64,11 @@
       })
         .then(function (res) {
           if (!res.ok) throw new Error('Submit failed');
-
+          return registerSignature();
+        })
+        .then(function () {
           if (formWrap) formWrap.hidden = true;
           if (success) success.hidden = false;
-
-          bumpCount();
 
           if (success) {
             success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
