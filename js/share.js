@@ -6,22 +6,18 @@
     'Object to North Warwickshire\'s Draft Local Plan before 19 Aug 2026. Sign the petition: ' +
     siteUrl;
 
-  var whatsappBtn = document.getElementById('share-whatsapp');
-  var smsBtn = document.getElementById('share-sms');
-  var copyBtn = document.getElementById('share-copy');
-  var feedback = document.getElementById('share-feedback');
-
-  if (whatsappBtn) {
-    whatsappBtn.href =
-      'https://wa.me/?text=' + encodeURIComponent(shareMessage);
+  function wireLink(id, href) {
+    var el = document.getElementById(id);
+    if (el) el.href = href;
   }
 
-  if (smsBtn) {
-    smsBtn.href = 'sms:?&body=' + encodeURIComponent(shareMessage);
-  }
+  function wireCopy(buttonId, feedbackId, text) {
+    var btn = document.getElementById(buttonId);
+    var feedback = document.getElementById(feedbackId);
 
-  if (copyBtn) {
-    copyBtn.addEventListener('click', function () {
+    if (!btn) return;
+
+    btn.addEventListener('click', function () {
       var done = function () {
         if (feedback) {
           feedback.hidden = false;
@@ -32,10 +28,10 @@
       };
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(shareMessage).then(done);
+        navigator.clipboard.writeText(text).then(done);
       } else {
         var textarea = document.createElement('textarea');
-        textarea.value = shareMessage;
+        textarea.value = text;
         textarea.style.position = 'fixed';
         textarea.style.opacity = '0';
         document.body.appendChild(textarea);
@@ -46,4 +42,15 @@
       }
     });
   }
+
+  wireLink('share-whatsapp', 'https://wa.me/?text=' + encodeURIComponent(shareMessage));
+  wireLink('share-sms', 'sms:?&body=' + encodeURIComponent(shareMessage));
+  wireLink('share-site-whatsapp', 'https://wa.me/?text=' + encodeURIComponent(shareMessage));
+  wireLink(
+    'share-site-facebook',
+    'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(siteUrl)
+  );
+
+  wireCopy('share-copy', 'share-feedback', shareMessage);
+  wireCopy('share-site-copy', 'share-site-feedback', siteUrl);
 })();
