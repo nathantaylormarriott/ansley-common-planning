@@ -10,27 +10,41 @@
     countEl.textContent = Number(value).toLocaleString('en-GB');
   }
 
-  function bumpCount() {
-    if (!countEl) return;
-    var current = parseInt(countEl.textContent.replace(/,/g, ''), 10);
-    setCount(Number.isFinite(current) ? current + 1 : 1);
+  function encodeForm(formEl) {
+    return new URLSearchParams(new FormData(formEl)).toString();
   }
 
-  function registerSignature() {
-    return fetch('/api/petition-count', { method: 'POST' })
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function (data) {
-        if (data && typeof data.count === 'number') {
-          setCount(data.count);
-        } else {
-          bumpCount();
+  function submitToNetlifyForms(body) {
+    return fetch('/petition-form.html', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body,
+    }).catch(function () {
+      return null;
+    });
+  }
+
+  function submitToApi(body) {
+    return fetch('/api/submit-petition', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body,
+    }).then(function (res) {
+      return res.json().then(function (data) {
+        if (!res.ok || !data.ok) {
+          throw new Error(data.error || 'Submit failed');
         }
-      })
-      .catch(function () {
-        bumpCount();
+        return data;
       });
+    });
+  }
+
+  function showSuccess() {
+    if (formWrap) formWrap.hidden = true;
+    if (success) success.hidden = false;
+    if (success) {
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }
 
   function loadCount() {
@@ -57,22 +71,15 @@
         submitBtn.textContent = 'Submitting…';
       }
 
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString(),
-      })
-        .then(function (res) {
-          if (!res.ok) throw new Error('Submit failed');
-          return registerSignature();
-        })
-        .then(function () {
-          if (formWrap) formWrap.hidden = true;
-          if (success) success.hidden = false;
+      var body = encodeForm(form);
 
-          if (success) {
-            success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      submitToApi(body)
+        .then(function (data) {
+          if (typeof data.count === 'number') {
+            setCount(data.count);
           }
+          submitToNetlifyForms(body);
+          showSuccess();
         })
         .catch(function () {
           if (submitBtn) {

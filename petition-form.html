@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Petition form</title>
+</head>
+<body>
+  <!-- Netlify build-time form detection -->
+  <form name="petition" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="petition">
+    <input type="text" name="name">
+    <textarea name="address"></textarea>
+    <input type="tel" name="telephone">
+    <textarea name="comments"></textarea>
+    <input name="bot-field">
+  </form>
+</body>
+</html>
