@@ -5,12 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Object to North Warwickshire's Draft Local Plan. Stop H9 & H10 development at Ansley Common. Have your say before 19 August 2026.">
   <title>Stop H9 & H10 – Protect Ansley Common</title>
+  <link rel="canonical" href="https://ansleycommonplanning.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ansleycommonplanning.netlify.app/">
+  <meta property="og:title" content="Stop H9 & H10 – Protect Ansley Common">
+  <meta property="og:description" content="Up to 850 new homes proposed at Ansley Common. Object to North Warwickshire's Draft Local Plan before 19 August 2026.">
+  <meta property="og:image" content="https://ansleycommonplanning.netlify.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stop H9 & H10 – Protect Ansley Common">
+  <meta name="twitter:description" content="Up to 850 new homes proposed at Ansley Common. Sign the petition before 19 August 2026.">
+  <meta name="twitter:image" content="https://ansleycommonplanning.netlify.app/assets/og-image.png">
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="countdown-sticky" id="countdown-sticky" hidden aria-hidden="true">
+    <div class="countdown-sticky__inner">
+      <p class="countdown-sticky__label">Consultation closes <strong>19 Aug 2026</strong></p>
+      <div class="countdown countdown--compact" data-countdown aria-live="polite">
+        <div class="countdown__unit">
+          <span class="countdown__value js-cd-days">--</span>
+          <span class="countdown__unit-label">Days</span>
+        </div>
+        <div class="countdown__unit">
+          <span class="countdown__value js-cd-hours">--</span>
+          <span class="countdown__unit-label">Hrs</span>
+        </div>
+        <div class="countdown__unit">
+          <span class="countdown__value js-cd-mins">--</span>
+          <span class="countdown__unit-label">Min</span>
+        </div>
+        <div class="countdown__unit">
+          <span class="countdown__value js-cd-secs">--</span>
+          <span class="countdown__unit-label">Sec</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <header class="hero">
     <div class="hero__inner">
       <p class="hero__eyebrow">North Warwickshire Local Plan Review 2025–2045</p>
@@ -19,27 +55,27 @@
       <div class="hero__banner">
         Object to North Warwickshire's Draft Local Plan — <strong>before it's too late</strong>
       </div>
-      <div class="deadline">
+      <div class="deadline" id="countdown-sentinel">
         <p class="deadline__label"><span class="deadline__icon" aria-hidden="true">⏰</span> Consultation closes <strong>11:59pm, Wednesday 19 August 2026</strong></p>
-        <div class="countdown" id="countdown" aria-live="polite">
+        <div class="countdown" data-countdown aria-live="polite">
           <div class="countdown__unit">
-            <span class="countdown__value" id="cd-days">--</span>
+            <span class="countdown__value js-cd-days">--</span>
             <span class="countdown__unit-label">Days</span>
           </div>
           <div class="countdown__unit">
-            <span class="countdown__value" id="cd-hours">--</span>
+            <span class="countdown__value js-cd-hours">--</span>
             <span class="countdown__unit-label">Hours</span>
           </div>
           <div class="countdown__unit">
-            <span class="countdown__value" id="cd-mins">--</span>
+            <span class="countdown__value js-cd-mins">--</span>
             <span class="countdown__unit-label">Mins</span>
           </div>
           <div class="countdown__unit">
-            <span class="countdown__value" id="cd-secs">--</span>
+            <span class="countdown__value js-cd-secs">--</span>
             <span class="countdown__unit-label">Secs</span>
           </div>
         </div>
-        <p class="countdown__expired" id="countdown-expired" hidden>Consultation has closed</p>
+        <p class="countdown__expired" data-countdown-expired hidden>Consultation has closed</p>
       </div>
       <a href="#petition" class="btn btn--primary">Sign the petition</a>
     </div>
@@ -51,7 +87,13 @@
         <h2 class="section__title">Have your say</h2>
         <p class="section__lead">Add your name to show you object to sites H9 and H10. We'll also help you make your voice heard to the council.</p>
 
-        <form name="petition" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you" class="petition-form">
+        <div class="petition-count" id="petition-count">
+          <span class="petition-count__number" id="petition-count-value">—</span>
+          <span class="petition-count__label">people have signed so far</span>
+        </div>
+
+        <div id="petition-form-wrap">
+          <form id="petition-form" name="petition" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="petition-form">
           <input type="hidden" name="form-name" value="petition">
 
           <p class="honeypot" aria-hidden="true">
@@ -79,7 +121,23 @@
           </div>
 
           <button type="submit" class="btn btn--submit">Submit petition</button>
-        </form>
+          </form>
+        </div>
+
+        <div class="petition-success" id="petition-success" hidden>
+          <div class="petition-success__icon" aria-hidden="true">✓</div>
+          <h3 class="petition-success__title">Thank you</h3>
+          <p class="petition-success__lead">Your petition has been submitted. Your voice matters.</p>
+          <p class="petition-success__note">For the biggest impact, also submit a <strong>formal objection</strong> to North Warwickshire Borough Council before <strong>19 August 2026</strong>.</p>
+          <div class="official-links">
+            <a href="https://www.northwarks.gov.uk/forward-planning/local-plan-north-warwickshire" class="btn btn--official" target="_blank" rel="noopener noreferrer">
+              Object on northwarks.gov.uk
+            </a>
+            <a href="mailto:planningpolicy@northwarks.gov.uk?subject=Objection%20to%20Sites%20H9%20and%20H10" class="btn btn--outline">
+              Email the council
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -187,6 +245,7 @@
     </div>
   </footer>
   <script src="/js/countdown.js"></script>
+  <script src="/js/petition.js"></script>
   <script src="/js/share.js"></script>
 </body>
 </html>

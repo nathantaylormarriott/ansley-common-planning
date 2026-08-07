@@ -1,5 +1,11 @@
 [build]
   publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/thank-you"
+  to = "/"
+  status = 301
 
 [[headers]]
   for = "/*"
