@@ -11,7 +11,12 @@
 [[headers]]
   for = "/assets/og-image.jpg"
   [headers.values]
-    Cache-Control = "public, max-age=604800, immutable"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/assets/og-image.png"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
 
 [[headers]]
   for = "/*"
